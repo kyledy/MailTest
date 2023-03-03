@@ -1,13 +1,12 @@
 const { service, auth } = require("../src/config/email-config");
-// const { transporter } = require("../src/controllers/email-controller");
 const Email = require("../src/models/email-model");
 const nodemailer = require("nodemailer");
 
-const transporter1 = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "kylematthewdy0104@gmail.com",
-    pass: "eprpybwxogliioch",
+    user: auth.user,
+    pass: auth.pass,
   },
 });
 
@@ -18,7 +17,7 @@ const message = {
   text: "Hello, this is a test email sent from nodemailer!",
 };
 
-transporter1.sendMail(message, function (error, info) {
+transporter.sendMail(message, function (error, info) {
   if (error) {
     console.log(error);
   } else {
