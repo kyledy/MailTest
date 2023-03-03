@@ -1,27 +1,27 @@
 const { service, auth } = require("../src/config/email-config");
-const { transporter } = require("../src/controllers/email-controller");
+// const { transporter } = require("../src/controllers/email-controller");
 const Email = require("../src/models/email-model");
+const nodemailer = require("nodemailer");
 
-const e1 = new Email(
-  "kylematthewdy0104@gmail.com",
-  "kylematthewdy0104@gmail.com",
-  "Sample Email 1",
-  "Hi! This is a sample email.",
-  ""
-);
+const transporter1 = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "kylematthewdy0104@gmail.com",
+    pass: "eprpybwxogliioch",
+  },
+});
 
-const e2 = new Email(
-  "kylematthewdy0104@gmail.com",
-  "kylematthewdy0104@gmail.com",
-  "Sample Email 2",
-  "Hi! This is a sample email.",
-  ""
-);
+const message = {
+  from: "kylematthewdy0104@gmail.com",
+  to: "kylematthewdy0104@gmail.com",
+  subject: "Test email from nodemailer",
+  text: "Hello, this is a test email sent from nodemailer!",
+};
 
-const e3 = new Email(
-  "kylematthewdy0104@gmail.com",
-  "kylematthewdy0104@gmail.com",
-  "Sample Email 3",
-  "Hi! This is a sample email.",
-  ""
-);
+transporter1.sendMail(message, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Email sent: " + info.response);
+  }
+});

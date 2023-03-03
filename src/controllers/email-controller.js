@@ -4,22 +4,25 @@
 const { service, auth } = require("../config/email-config");
 const nodemailer = require("nodemailer");
 
-module.exports.transporter = nodemailer.createTransport({
-  service: service,
-  auth: auth,
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "kylematthewdy0104@gmail.com",
+    pass: "eprpybwxogliioch",
+  },
 });
 
-/** Sample message
- * const message = {
- * from: auth.user, // Temporarily sends an email to themselves
- * to: auth.user,
- * subject: "Test email from nodemailer",
- * text: "Hello, this is a test email sent from nodemailer!",
- * };
- */
+const message = {
+  from: "kylematthewdy0104@gmail.com",
+  to: "kylematthewdy0104@gmail.com",
+  subject: "Test Email from Node.js",
+  text: "This is a test email sent from a Node.js application using nodemailer.",
+};
 
-/** Sample call to send an email
- * transporter.sendMail(message, (error, info) => {
- * error ? console.log(error) : console.log("Email sent: " + info.response);
- * });
- */
+transporter.sendMail(message, (error, info) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Email sent: " + info.response);
+  }
+});

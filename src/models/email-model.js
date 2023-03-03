@@ -3,12 +3,11 @@
  */
 
 class Email {
-  constructor(from, to, subject, text, html) {
+  constructor(from, to, subject, text) {
     this.from = from;
     this.to = to;
     this.subject = subject;
     this.text = text;
-    this.html = html;
   }
 
   // getters and setters
@@ -61,7 +60,6 @@ class Email {
       to: this.to,
       subject: this.subject,
       text: this.text,
-      html: this.html,
     };
   }
 }
