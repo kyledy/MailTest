@@ -66,4 +66,4 @@ class Email {
   }
 }
 
-export default Email;
+module.exports = Email;

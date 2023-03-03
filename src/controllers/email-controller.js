@@ -1,20 +1,13 @@
 /**
  * This file handles HTTP requests related to email operations, such as sending emails and retrieving email metadata.
  */
-import { service, auth } from "./email-config.mjs";
-
+const { service, auth } = require("../config/email-config");
 const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport({
+module.exports.transporter = nodemailer.createTransport({
   service: service,
   auth: auth,
 });
-
-const sendMessage = (message) => {
-  transporter.sendMail(message, (error, info) => {
-    error ? console.log(error) : console.log("Email sent: " + info.response);
-  });
-};
 
 /** Sample message
  * const message = {
