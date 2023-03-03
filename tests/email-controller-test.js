@@ -1,9 +1,8 @@
 const { service, auth } = require("../src/config/email-config");
-const Email = require("../src/models/email-model");
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: service,
   auth: {
     user: auth.user,
     pass: auth.pass,
