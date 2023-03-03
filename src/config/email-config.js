@@ -1,12 +1,9 @@
 /**
- * This file contains configuration settings for our email provider, such as SMTP credentials, port number,
- * and security options.
+ * This file contains configuration settings for our email provider.
  */
 
-export const host = "smtp.gmail.com";
-export const port = 465;
-export const secure = true;
+export const service = "gmail";
 export const auth = {
-  user: "your-email@gmail.com",
-  pass: "your-password",
+  user: "kylematthewdy0104@gmail.com",
+  pass: "eprpybwxogliioch",
 };
