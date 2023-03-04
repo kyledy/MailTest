@@ -1,6 +1,8 @@
 /**
  * This file contains functions that implement the business logic for email operations, such as sending and receiving
- * emails, parsing email content, and validating email addresses.
+ * emails.
  */
 
-const Email = require("../models/email-model.js");
+const { auth } = require("../config/email-config");
+const user = auth.user;
+const pass = auth.pass;

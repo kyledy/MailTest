@@ -3,37 +3,12 @@
  * parsing email content, and validating email addresses.
  */
 
-import { createTransport } from "nodemailer";
-import {
-  smtpHost,
-  smtpPort,
-  smtpSecure,
-  smtpUser,
-  smtpPass,
-  fromEmail,
-} from "./email-config";
+function isValidEmail(email) {
+  // Regular expression for validating email addresses
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-async function sendEmail(to, subject, text) {
-  const transporter = createTransport({
-    host: smtpHost,
-    port: smtpPort,
-    secure: smtpSecure,
-    auth: {
-      user: smtpUser,
-      pass: smtpPass,
-    },
-  });
-
-  const info = await transporter.sendMail({
-    from: fromEmail,
-    to,
-    subject,
-    text,
-  });
-
-  console.log(`Email sent: ${info.messageId}`);
+  // Test the email against the regular expression
+  return emailRegex.test(email);
 }
 
-export default {
-  sendEmail,
-};
+module.exports = isValidEmail;
