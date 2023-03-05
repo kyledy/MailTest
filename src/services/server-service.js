@@ -59,3 +59,5 @@ async function getMessages(no_to_fetch, query) {
     console.log("---");
   }
 }
+
+getMessages().catch((error) => console.error(error));
