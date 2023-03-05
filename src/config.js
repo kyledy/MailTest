@@ -2,7 +2,7 @@
  * This file contains configuration settings for our email account.
  */
 const assert = require("assert");
-const isValidEmail = require("../utils/email-utils");
+const isValidEmail = require("./utils");
 
 module.exports.auth = {
   user: "your-username@gmail.com",

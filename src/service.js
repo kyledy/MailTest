@@ -3,9 +3,9 @@
  * emails.
  */
 
-const Email = require("../models/email-model.js");
+const Email = require("./email-model.js");
 const nodemailer = require("nodemailer");
-const { auth } = require("../config/email-config");
+const { auth } = require("./config");
 const transporter = nodemailer.createTransport({
   service: "email-service", // change this when we can securely connect to the server
   auth: {
