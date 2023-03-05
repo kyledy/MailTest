@@ -1,5 +1,5 @@
 /**
- * This file contains utility functions related to email operations, such as formatting email addresses,
+ * This file contains utility functions, such as formatting email addresses,
  * parsing email content, and validating email addresses.
  */
 
