@@ -7,7 +7,8 @@ class Email {
     this.from = from;
     this.to = to;
     this.subject = subject;
-    this.text = text;
+    this.date = date;
+    this.body = body;
   }
 
   // getters and setters
@@ -35,20 +36,20 @@ class Email {
     this.subject = subject;
   }
 
-  getText() {
-    return this.text;
+  getDate() {
+    return this.date;
   }
 
-  setText(text) {
-    this.text = text;
+  setDate(date) {
+    this.date = date;
   }
 
-  getHtml() {
-    return this.html;
+  getBody() {
+    return this.body;
   }
 
-  setHtml(html) {
-    this.html = html;
+  setBody(body) {
+    this.body = body;
   }
 
   /**
@@ -60,7 +61,8 @@ class Email {
       from: this.from,
       to: this.to,
       subject: this.subject,
-      text: this.text,
+      date: this.date,
+      body: this.body,
     };
   }
 }

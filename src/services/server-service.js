@@ -5,6 +5,7 @@
 const { google } = require("googleapis");
 const { authenticate } = require("@google-cloud/local-auth");
 const path = require("path");
+const { parseMessage } = require("../utils");
 
 /**
  * This function retrieves a specified number of emails from the user's Gmail account that match the specified filter criteria.
@@ -31,6 +32,7 @@ async function getMessages(no_to_fetch, query) {
   });
 
   const messages = res.data.messages;
+  let retrievedMessages = []; // to store the email objects retrieved by the function call
 
   for (const message of messages) {
     const msg = await gmail.users.messages.get({
@@ -39,25 +41,30 @@ async function getMessages(no_to_fetch, query) {
       format: "full",
     });
 
-    console.log(
-      "From:",
-      msg.data.payload.headers.find((header) => header.name === "From").value
-    );
-    console.log(
-      "To:",
-      msg.data.payload.headers.find((header) => header.name === "To").value
-    );
-    console.log(
-      "Subject:",
-      msg.data.payload.headers.find((header) => header.name === "Subject").value
-    );
-    console.log(
-      "Date:",
-      msg.data.payload.headers.find((header) => header.name === "Date").value
-    );
-    console.log("Body:", msg.data.snippet);
-    console.log("---");
-  }
-}
+    next_message = {
+      from: msg.data.payload.headers.find((header) => header.name === "From")
+        .value,
+      to: msg.data.payload.headers.find((header) => header.name === "To").value,
+      subject: msg.data.payload.headers.find(
+        (header) => header.name === "Subject"
+      ).value,
+      date: msg.data.payload.headers.find((header) => header.name === "Date")
+        .value,
+      body: msg.data.snippet,
+    };
 
-getMessages().catch((error) => console.error(error));
+    retrievedMessages.push(next_message);
+  }
+  processMessages(retrievedMessages);
+}
+module.exports = getMessages;
+
+/**
+ * This function takes the list of retrieved messages and parses their content according to the specified criteria.
+ *
+ * @param {Object[object]} messages - the list of retrieved messages
+ * @returns {Object[object]} the list of parsed messages
+ */
+function processMessages(messages) {
+  return messages.map((message) => parseMessage(message));
+}
