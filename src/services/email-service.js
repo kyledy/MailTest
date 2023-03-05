@@ -4,7 +4,7 @@
  */
 const Email = require("./email-model.js");
 const nodemailer = require("nodemailer");
-const { auth, service } = require("./config/user-config");
+const { auth, service } = require("../config/user-config");
 const transporter = nodemailer.createTransport({
   service: service,
   auth: {
