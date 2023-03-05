@@ -52,7 +52,8 @@ class Email {
   }
 
   /**
-   * Creates a message object for nodemailer
+   * Creates a message object for nodemailer.
+   * @returns {object} - Message to be sent
    */
   getMessage() {
     return {
