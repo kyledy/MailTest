@@ -5,7 +5,7 @@
 const { google } = require("googleapis");
 const { authenticate } = require("@google-cloud/local-auth");
 const path = require("path");
-const { parseMessage } = require("../utils");
+const parseMessage = require("../utils");
 
 /**
  * This function retrieves a specified number of emails from the user's Gmail account that match the specified filter criteria.
@@ -55,7 +55,10 @@ async function getMessages(no_to_fetch, query) {
 
     retrievedMessages.push(next_message);
   }
-  processMessages(retrievedMessages);
+  const processedMessages = processMessages(retrievedMessages);
+  console.log(processedMessages);
+
+  // TODO: implement frontend integration here
 }
 module.exports = getMessages;
 
@@ -68,3 +71,5 @@ module.exports = getMessages;
 function processMessages(messages) {
   return messages.map((message) => parseMessage(message));
 }
+
+getMessages(2, "").catch((error) => console.error(error));

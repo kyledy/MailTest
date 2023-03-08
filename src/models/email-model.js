@@ -3,7 +3,7 @@
  */
 
 class Email {
-  constructor(from, to, subject, text) {
+  constructor(from, to, subject, date, body) {
     this.from = from;
     this.to = to;
     this.subject = subject;
