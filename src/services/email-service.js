@@ -18,7 +18,6 @@ const transporter = nodemailer.createTransport({
 /**
  * Sends the email based on the specified criteria, or prints an error message if the email doesn't go through.
  * @param {Email} email - The message to send
- * @returns {void}
  */
 function sendEmail(email) {
   const message = email.getMessage();

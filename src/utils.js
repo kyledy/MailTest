@@ -29,8 +29,6 @@ module.exports = isValidEmail;
  */
 function parseMessage(message) {
   if (message) {
-    assert.ok(isValidEmail(message.from), "Invalid email address received.");
-    assert.ok(isValidEmail(message.to), "Invalid email address received.");
     return new Email(
       message.from,
       message.to,
@@ -39,7 +37,7 @@ function parseMessage(message) {
       message.body
     );
   } else {
-    console.error("The value of the message was null.");
+    console.error("This is not a valid email.");
   }
 }
 module.exports = parseMessage;
